@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{% block title %} Сгенерировать отчет {% endblock %}</h2>
+    <hr>
+    <form id="myForm" action="/generate_report" method="POST">
+        <hr>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th scope="row">{{ 'Id клиента' }}</th>
+                <th scope="row"><input type="text" id="client_id" name="client_id"></th>
+            </tr>
+            <tr>
+                <th scope="row">{{ 'Дата, после которой нужно узнать услуги' }}</th>
+                <th scope="row"><input type="date" id="date" name="date"></th>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-primary btn-sm">Сгенерировать</button>
+    </form>
+{% endblock %}

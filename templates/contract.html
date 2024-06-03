@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{% block title %} {{ contract['number'] }} {% endblock %}</h2>
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Позиция</th>
+            <th scope="col">Значение</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in contract.keys() %}
+            {% if i != 'id' %}
+                {% if i == 'client_id' %}
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        <th scope="row">
+                            <a href="{{ url_for('client', client_id=contract[i]) }}">
+                                <h2>{{ client }}</h2>
+                            </a>
+                        </th>
+                    </tr>
+                {% elif i == 'employee_id' %}
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        <th scope="row">
+                            <a href="{{ url_for('employee', employee_id=contract[i]) }}">
+                                <h2>{{ employee }}</h2>
+                            </a>
+                        </th>
+                    </tr>
+                {% elif i == 'services_type_id' %}
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        <th scope="row">
+                            <a href="{{ url_for('type_service', type_service_id=contract[i]) }}">
+                                <h2>{{ service }}</h2>
+                            </a>
+                        </th>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        <th scope="row">{{ contract[i] }}</th>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('update_contract', contract_id=contract['id']) }}">
+        <button>Изменить договор</button>
+    </a>
+    <hr>
+    <a href="{{ url_for('generate_contract', contract_id=contract['id']) }}">
+        <button>Сгенерировать отчет</button>
+    </a>
+{% endblock %}

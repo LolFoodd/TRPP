@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{% block title %} Изменить договор {% endblock %}</h2>
+    <hr>
+    <form id="myForm" action="/update_contract/{{ contract['id'] }}" method="POST">
+        <hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Позиция</th>
+                <th scope="col">Значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in contract.keys() %}
+                {% if i != 'id' and i != 'date' and i != 'finish_price' %}
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        <th scope="row"><input type="text" id={{ "pos_" + i }} name={{ "pos_" + i }} value={{ contract[i] }}></th>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-primary btn-sm">Изменить</button>
+    </form>
+{% endblock %}

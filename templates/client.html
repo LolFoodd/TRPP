@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{% block title %} {{ client['name'] }} {% endblock %}</h2>
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Позиция</th>
+            <th scope="col">Значение</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in client.keys() %}
+            {% if i != 'id' %}
+                <tr>
+                    <th scope="row">{{ i }}</th>
+                    <th scope="row">{{ client[i] }}</th>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('update_client', client_id=client['id']) }}">
+        <button>Изменить клиента</button>
+    </a>
+{% endblock %}

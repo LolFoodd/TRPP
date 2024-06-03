@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{% block title %} {{ employee['name'] }} {% endblock %}</h2>
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Позиция</th>
+            <th scope="col">Значение</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in employee.keys() %}
+            {% if i != 'id' %}
+                <tr>
+                    <th scope="row">{{ i }}</th>
+                    <th scope="row">{{ employee[i] }}</th>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('update_employee', employee_id=employee['id']) }}">
+        <button>Изменить сотрудника</button>
+    </a>
+{% endblock %}

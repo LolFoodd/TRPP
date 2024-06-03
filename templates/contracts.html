@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{% block title %} Список договоров {% endblock %}</h1>
+    {% for contract in contracts %}
+        <a href="{{ url_for('contract', contract_id=contract['id']) }}">
+            <h2>{{ contract['number'] }}</h2>
+        </a>
+        <p>Дата: {{ contract['date'] }}</p>
+        <p>Тип услуги: {{ services[contract['services_type_id']] }}</p>
+        <p>Финальная цена: {{ contract['finish_price'] }}</p>
+        <p>Клиент: {{ clients[contract['client_id']] }}</p>
+        <p>Сотрудник: {{ employees[contract['employee_id']] }}</p>
+        <hr>
+    {% endfor %}
+    <a href="{{ url_for('new_contract') }}">
+        <button>Добавить новый договор</button>
+    </a>
+{% endblock %}

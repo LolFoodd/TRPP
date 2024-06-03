@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{% block title %} Список сотрудников {% endblock %}</h1>
+    {% for employee in employees %}
+        <a href="{{ url_for('employee', employee_id=employee['id']) }}">
+            <h2>{{ employee['name'] }}</h2>
+        </a>
+        <p>Телефон: {{ employee['phone_number'] }}</p>
+        <p>Должность: {{ employee['position'] }}</p>
+        <hr>
+    {% endfor %}
+    <a href="{{ url_for('new_employee') }}">
+        <button>Добавить нового сотрудника</button>
+    </a>
+{% endblock %}
